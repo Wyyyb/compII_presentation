@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yubo Wang’s University of Waterloo doctoral proposal on grounding autonomous ML research in literature, reproducible experiments, and independent audits.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Towards Grounded, Reproducible, and Auditable Autonomous Research · Yubo Wang</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><nav class="wrap" aria-label="Site navigation">
+  <a class="identity" href="#main"><span class="seal" aria-hidden="true"><i></i><i></i><i></i></span><b>Yubo Wang</b><span class="divider"></span><span>Comp II</span></a>
+  <div class="navlinks"><a href="#foundations">Foundations</a><a href="#audit">Audit studies</a><a class="navslide" href="slides.pdf">Slides <small>PDF</small></a></div>
+</nav></header>
+<main id="main">
+<section class="hero">
+ <div class="wrap hero-inner">
+   <div class="intro">
+     <p class="eyebrow"><span class="stroke"></span>University of Waterloo · Computer Science</p>
+     <h1>Towards grounded, reproducible, and auditable <em>autonomous research</em></h1>
+     <p class="lede">When a research agent reports a finding, what would another researcher need to check it?</p>
+     <p class="byline"><b>Yubo Wang</b><span>PhD Comprehensive II</span><time datetime="2026-11-26">26 November 2026</time></p>
+     <div class="downloads"><a class="primary" href="slides.pdf">View slides <small>PDF</small></a><a href="slides.pptx" download>PowerPoint</a><a href="speaker-notes.pdf">Speaker notes</a></div>
+   </div>
+   <figure class="case">
+      <figcaption class="plate-label"><i></i>Illustrative research claim</figcaption>
+      <div class="case-paper">
+        <div class="paper-heading"><span class="mono">RESULTS</span><i aria-hidden="true"></i></div>
+        <blockquote>“On the same test set, our method beats the baseline.”</blockquote>
+        <div class="example-data" aria-label="Illustrative accuracy scores">
+          <div><span>Baseline</span><div class="track"><i style="--v:78%"></i></div><b>78%</b></div>
+          <div><span>Our method</span><div class="track"><i style="--v:80%"></i></div><b>80%</b></div>
+        </div>
+      </div>
+      <div class="trace" aria-hidden="true"><i></i></div>
+      <details class="inspect"><summary><span class="plus" aria-hidden="true"></span>Inspect the run records</summary>
+       <div class="inspection"><dl><div><dt>Baseline split</dt><dd>test A</dd></div><div><dt>Method split</dt><dd>test B</dd></div></dl><p>The runs used different test sets. Rerun both methods on a common split to test the comparison.</p></div>
+      </details>
+   </figure>
+ </div>
+</section>
+<div class="chapter-nav"><nav class="wrap" aria-label="Jump to a project"><a href="#mmlu"><span>Measure</span>MMLU-Pro</a><a href="#cft"><span>Critique</span>CFT</a><a href="#scholar"><span>Retrieve</span>ScholarCopilot</a><a href="#repro"><span>Reproduce</span>ReproBridge</a><a href="#audit"><span>Verify</span>Independent audit</a></nav></div>
+<section class="wrap foundations" id="foundations">
+ <div class="section-head"><p class="eyebrow"><span class="stroke"></span>Completed work</p><h2>Foundations for research agents</h2></div>
+ <article class="project" id="mmlu">
+  <div class="text"><p class="eyebrow">MMLU-Pro · NeurIPS 2024</p><h3>Can a benchmark distinguish stronger reasoners?</h3><p>MMLU-Pro includes 12,032 questions across 14 disciplines, with up to ten plausible options per question. Asking GPT-4o to work through a problem before answering makes a larger difference on this benchmark.</p><div class="sources"><a href="https://arxiv.org/abs/2406.01574">Paper</a><a href="https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro">Dataset</a></div></div>
+  <figure class="exhibit blue"><figcaption>GPT-4o accuracy</figcaption><table><thead><tr><th scope="col">Benchmark</th><th scope="col">Direct</th><th scope="col">Chain of thought</th></tr></thead><tbody><tr><th scope="row">MMLU</th><td>87.2%</td><td>88.7%</td></tr><tr><th scope="row">MMLU-Pro</th><td>53.5%</td><td><b>72.6%</b></td></tr></tbody></table><p class="figure-note">Working through the problem gained 19.1 points on MMLU-Pro.</p></figure>
+ </article>
+ <article class="project" id="cft">
+  <div class="text"><p class="eyebrow">Critique Fine-Tuning · COLM &amp; EMNLP 2025</p><h3>What can a student learn from a teacher’s critique?</h3><p>An answer key reveals an error. A critique can locate the step that caused it. CFT trains a student to generate a teacher’s analysis of a candidate answer. On new math problems, the student answers directly.</p><p>One-Shot CFT narrows the training set to one seed problem, using 600 filtered solution–critique examples per seed. Whether critique can guide a live research decision remains an open question.</p><div class="sources"><a href="https://arxiv.org/abs/2501.17703">CFT paper</a><a href="https://arxiv.org/abs/2506.03295">One-Shot CFT paper</a></div></div>
+  <figure class="exhibit"><figcaption>What changes during training?</figcaption><div class="contrast"><div><span class="mono">Answer supervision</span><strong>50.4%</strong><p>Generate the teacher’s solution.</p></div><div><span class="mono">Critique supervision</span><strong>57.1%</strong><p>Generate the teacher’s critique.</p></div></div><p class="figure-note">Mean direct-answer accuracy across six math benchmarks. Same Qwen2.5-Math-7B base and 50K WebInstruct examples.</p></figure>
+ </article>
+ <article class="project" id="scholar">
+  <div class="text"><p class="eyebrow">ScholarCopilot · COLM 2025</p><h3>Which paper belongs at this citation?</h3><p>Scientific writing brings in evidence beyond a model’s own reasoning. ScholarCopilot emits a retrieval token while drafting, uses its context to retrieve a paper, and conditions the next passage on that paper.</p><div class="sources"><a href="https://arxiv.org/abs/2504.00824">Paper</a><a href="https://tiger-ai-lab.github.io/ScholarCopilot/">Project page</a></div></div>
+  <figure class="exhibit blue"><figcaption>Recovering the cited paper</figcaption><div class="bars"><div><span>BM25</span><i style="--v:19.6%"></i><b>9.8%</b></div><div><span>E5-Mistral-7B-Instruct</span><i style="--v:30%"></i><b>15.0%</b></div><div class="key"><span>ScholarCopilot</span><i style="--v:80.2%"></i><b>40.1%</b></div></div><p class="figure-note">Recall at rank one. Recovering a citation gives the reader a source to inspect.</p></figure>
+ </article>
+ <article class="project" id="repro">
+  <div class="text"><p class="eyebrow">ReproBridge · 2026</p><h3>Can a fresh session reproduce the measurement?</h3><p>Even with a source in hand, recovering a result can take days of work. ReproBridge preserves the recovered code, environment, launchers, and guide so the next researcher can rerun the experiment.</p><p>In ScientistTwo, we applied this approach to reproducible input repositories and generated code.</p><div class="sources"><a href="https://arxiv.org/abs/2611.08452">Paper</a><a href="https://wyyyb.github.io/reprobridge_website/">Project page</a></div></div>
+  <figure class="exhibit"><figcaption>Independent reproduction success</figcaption><div class="contrast"><div><span class="mono">Released code</span><strong>76.4%</strong></div><div><span class="mono">Refined artifact</span><strong>92.6%</strong></div></div><p class="figure-note">Mean task success across four models on 1,029 tasks from 36 papers. Success requires numerical agreement and execution integrity.</p></figure>
+ </article>
+</section>
+<section class="audit" id="audit"><div class="wrap">
+ <p class="eyebrow"><span class="stroke"></span>Proposed research · independent audit</p>
+ <h2>What should the agent check next?</h2>
+ <p class="audit-lede">A rerun can reproduce a number even when the comparison uses different test splits. I propose linking each claim to its evidence, then testing whether an independent auditor can identify what to check while there is still time to act.</p>
+ <figure class="audit-interface">
+   <a href="assets/auditor-interface.png" aria-label="Open full-resolution audit interface screenshot"><img loading="lazy" width="3402" height="1426" src="assets/auditor-interface.png" alt="Audit prototype with a highlighted source PDF at left, a claim and evidence graph in the center, and an assessment of cross-period stability at right. The verdict reads ‘Supported by the figure’."></a>
+   <figcaption><span>The selected claim concerns stability across time periods. The auditor traces it to a published figure. An independent rerun would require separate execution evidence.</span><a href="assets/auditor-interface.png">Full-resolution image</a></figcaption>
+ </figure>
+ <div class="studies"><article><p class="eyebrow">Study A · Fixed episodes</p><h3>Which records make a claim assessable?</h3><p>Hold the claim and completed experiment fixed. Vary the evidence an auditor can inspect, from the final paper and repository to linked configurations and raw outputs.</p><div><b>Measure</b> Unsupported acceptance at matched coverage.</div></article><article><p class="eyebrow">Study B · Live episodes</p><h3>Does feedback improve the next decision?</h3><p>Compare passive audit, fixed checks, and adaptive feedback under equal model and execution budgets. Follow the claim through the next inspection, rerun, or revision.</p><div><b>Measure</b> Fraction of assigned episodes that reach an independently supported conclusion, including well-founded negative results.</div></article></div>
+</div></section>
+</main>
+<footer><div class="wrap"><p><b>Yubo Wang</b> · University of Waterloo</p><a href="#main">Back to top</a></div></footer>
+</body></html>
